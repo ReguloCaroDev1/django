@@ -8,22 +8,6 @@ from rest_framework.parsers import FormParser, FileUploadParser, MultiPartParser
 from rest_framework import mixins
 
 
-# class ThingView(views.APIView):
-#     parser_classes = (JSONParser, FormParser, MultiPartParser,)
-
-#     def post(self, request):
-#         name = request.data['name']
-#         image = request.data['image']
-#         sz = ThingSerializer(data=request.data)
-#         print('SERIALIZER',sz)
-#         response = Response()
-#         response.data = {
-#             'name': name,
-#             #'image':
-#         }
-#         return response
-
-#     permission_classes = []
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all().order_by('id')
     serializer_class = AlbumSerializer
@@ -63,7 +47,3 @@ class SingerViewSet(viewsets.ModelViewSet):
     queryset = Singer.objects.all().order_by('name')
     serializer_class = SingerSerializer
     permission_classes = []
-
-    def create(request):
-        if request.method == "POST":
-            form = Singer(request.POST, request.FILES)
